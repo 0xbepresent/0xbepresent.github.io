@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="XMPP es un protocolo con modelo de “cliente-servidor”, actualmente en la Web no se soporta XMPP nativamente asi que el tráfico que se quiera realizar por XMPP se tendra que manejar dentro del cliente">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Que es XMPP y BOSH ejabberd">
+<meta property="og:url" content="https://misalabs.com/2013/01/13/xmpp/index.html">
+<meta property="og:site_name" content="0xbepresent">
+<meta property="og:description" content="XMPP es un protocolo con modelo de “cliente-servidor”, actualmente en la Web no se soporta XMPP nativamente asi que el tráfico que se quiera realizar por XMPP se tendra que manejar dentro del cliente">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://misalabs.com/images/xmpp_1.png">
+<meta property="og:image" content="https://misalabs.com/images/xmpp_2.png">
+<meta property="article:published_time" content="2013-01-13T06:00:00.000Z">
+<meta property="article:modified_time" content="2023-01-25T19:00:51.228Z">
+<meta property="article:author" content="0xbepresent">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://misalabs.com/images/xmpp_1.png">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/logo_bepresent.png">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/logo_bepresent.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/logo_bepresent.png">
+        
+      
+    
+    <!-- title -->
+    <title>Que es XMPP y BOSH ejabberd</title>
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <!--
+       --><li><a href="/">Home</a></li><!--
+     --><!--
+       --><li><a href="/about/">About</a></li><!--
+     --><!--
+       --><li><a href="/archives/">Writing</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="http://github.com/0xbepresent">Projects</a></li><!--
+     -->
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        
+        <li><a class="icon" aria-label="Next post" href="/2012/11/12/comet-php/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="Back to top" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="Share post" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://misalabs.com/2013/01/13/xmpp/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://misalabs.com/2013/01/13/xmpp/&text=Que es XMPP y BOSH ejabberd"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://misalabs.com/2013/01/13/xmpp/&title=Que es XMPP y BOSH ejabberd"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://misalabs.com/2013/01/13/xmpp/&is_video=false&description=Que es XMPP y BOSH ejabberd"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Que es XMPP y BOSH ejabberd&body=Check out this article: https://misalabs.com/2013/01/13/xmpp/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://misalabs.com/2013/01/13/xmpp/&title=Que es XMPP y BOSH ejabberd"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://misalabs.com/2013/01/13/xmpp/&title=Que es XMPP y BOSH ejabberd"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://misalabs.com/2013/01/13/xmpp/&title=Que es XMPP y BOSH ejabberd"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://misalabs.com/2013/01/13/xmpp/&title=Que es XMPP y BOSH ejabberd"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://misalabs.com/2013/01/13/xmpp/&name=Que es XMPP y BOSH ejabberd&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://misalabs.com/2013/01/13/xmpp/&t=Que es XMPP y BOSH ejabberd"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        Que es XMPP y BOSH ejabberd
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">0xbepresent</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2013-01-13T06:00:00.000Z" itemprop="datePublished">2013-01-13</time>
+        
+      
+    </div>
+
+
+      
+
+      
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <p>XMPP es un protocolo con modelo de “cliente-servidor”, actualmente en la Web no se soporta XMPP nativamente asi que el tráfico que se quiera realizar por XMPP se tendra que manejar dentro del cliente como Javascript&#x2F;Flash etc. Ahora el problema más importante es como HTTP trabaja de manera unidireccional, es decir, el cliente manda un “request” y el server devuelve un “response” y la parte de hacerlo alreves se deja un lado osea que el server mande la información sin que se le pida. Y esto como para que?, pues ya anterioremente les habia platicado técnicas como polling, comet, long-polling las cuales estamos consultando si es que hay nueva información al servidor aumentando la latencía, imaginemos en Twitter como sin darle un reload a la página nos aparecen nuevos “Tweets”, esto es gracias a que el servidor encontro nueva información e hizo un push para mandarnos esa nueva infromación.</p>
+<p>XMPP es un protocolo libre, esto de los protocolos es simplemente la comunicación que se tiene entre maquinas, cuando las 2 instancias conocen el protocolo son capaces de entender y compartir información sin embargo cuando el protocolo es cerrado es muy dificil ver lo que quiere decir o lo que esta pasando. Actualmente hay varios protocolos cerrados, en mensajería instantanea imaginemos “MSN messenger”, este protocolo de comunicación simplemente nadie lo entiende, solo hay algunos rudos quienes hicieron ingenieria inversa para entender el protocolo y asi crear clientes que puedan usarlo. Ahora un ejemplo con protocolo abierto de Gtalk de google que usa XMPP :)</p>
+<p>XMPP trabaja a base de enviar XML, así también existen 3 elementos muy importantes que son el message, presence e iq. El message se trata del “mensaje” que enviaremos, presence es el “estado” del usuario como disponible, ausente blabla y iq se refiere a un id para enviarnos información necesaria.</p>
+<p>En resumidas cuentas XMPP trabaja de manera persistente, es decir, la conexión esta disponible desde el principio hasta el final pudiendose transmitir todoso los datos que sean. En HTTP la conexión es de petición y respuesta, es decir, el cliente quiere algo y el servidor responde y puff hasta ahí.</p>
+<p>Para implementar este tipo de metodología es necesario de un puente entre HTTP y XMPP y es ahi donde entra BOSH :-). BOSH se trata de eso, dejar abierto un canal el cual quede escuchando y si el servidor tiene algo que “decir” lo manda al cliente si no simplemente se queda ahi.</p>
+<p>Existen diversos servidors los cuales se pueden usar, como ejabberd, tigase, openfire y jabber xcp. Aqui instalaremos ejabberd.</p>
+<p>Esta instalación sera en un linux, ubuntu. Para instalarlo simplemente ponemos el comando.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo apt-get install ejabberd</span><br></pre></td></tr></table></figure>
+<p>Ahora paramos el servidor , esto para realizar algunas configuraciones</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo /etc/init.d/ejabberd stop[/sourcecode]</span><br></pre></td></tr></table></figure>
+
+<p>Ahora editamos un archivo.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo gedit /etc/ejabberd/ejabberd.cfg</span><br></pre></td></tr></table></figure>
+
+<p>Y en la linea “%%Admin user” configurar el usuario y dominio que usaremos, en este caso le puse jabberdmisalabs.com , este dominio es el que usaremos para hacer las peticiones de manera local, es decir, tambien lo agregaremos en &#x2F;etc&#x2F;hosts quedando algo asi “127.0.0.1 jabbermisalabs.com <a target="_blank" rel="noopener" href="http://www.jabbermisalabs.com/">www.jabbermisalabs.com</a>“</p>
+<img class="center" src="/images/xmpp_1.png" />
+
+<p>Ahora lo iniciamos</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo /etc/init.d/ejabberd start</span><br></pre></td></tr></table></figure>
+<p>Y finalmente configuramos el usuario con su password, sustitumos las “xxxx” por nuestra clave</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo ejabberdctl register asim jabbermisalabs.com xxxxxx</span><br></pre></td></tr></table></figure>
+
+<p>Ahora vamos al navegador al <a target="_blank" rel="noopener" href="http://jabbermisalabs.com:5280/admin">http://jabbermisalabs.com:5280/admin</a> introducimos como usuario algo asi como <a href="mailto:&#97;&#115;&#105;&#109;&#x40;&#106;&#x61;&#x62;&#x62;&#101;&#x72;&#x6d;&#105;&#x73;&#x61;&#x6c;&#97;&#98;&#x73;&#46;&#x63;&#x6f;&#x6d;">&#97;&#115;&#105;&#109;&#x40;&#106;&#x61;&#x62;&#x62;&#101;&#x72;&#x6d;&#105;&#x73;&#x61;&#x6c;&#97;&#98;&#x73;&#46;&#x63;&#x6f;&#x6d;</a> y la clave la que habiamos especificado. Finalemente entramos al Admin.</p>
+<img class="center" src="/images/xmpp_2.png"/>
+
+<p>Existen muchas aplicaciones los cuales podemos realizar como chats, juegos en tiempo real, edición de documentos en tiempo real, etc. En un futuro ya pondre algunos ejemplos del potencial de este protocolo.</p>
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a target="_blank" rel="noopener" href="http://github.com/0xbepresent">Projects</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://misalabs.com/2013/01/13/xmpp/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://misalabs.com/2013/01/13/xmpp/&text=Que es XMPP y BOSH ejabberd"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://misalabs.com/2013/01/13/xmpp/&title=Que es XMPP y BOSH ejabberd"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://misalabs.com/2013/01/13/xmpp/&is_video=false&description=Que es XMPP y BOSH ejabberd"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Que es XMPP y BOSH ejabberd&body=Check out this article: https://misalabs.com/2013/01/13/xmpp/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://misalabs.com/2013/01/13/xmpp/&title=Que es XMPP y BOSH ejabberd"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://misalabs.com/2013/01/13/xmpp/&title=Que es XMPP y BOSH ejabberd"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://misalabs.com/2013/01/13/xmpp/&title=Que es XMPP y BOSH ejabberd"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://misalabs.com/2013/01/13/xmpp/&title=Que es XMPP y BOSH ejabberd"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://misalabs.com/2013/01/13/xmpp/&name=Que es XMPP y BOSH ejabberd&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://misalabs.com/2013/01/13/xmpp/&t=Que es XMPP y BOSH ejabberd"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2012-2023
+    0xbepresent
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       --><li><a href="/">Home</a></li><!--
+     --><!--
+       --><li><a href="/about/">About</a></li><!--
+     --><!--
+       --><li><a href="/archives/">Writing</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="http://github.com/0xbepresent">Projects</a></li><!--
+     -->
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+ 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script> 
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script> 
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    btn += '<i class="far fa-clone"></i>';
+    btn += '</span>'; 
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Copied!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Umami Analytics -->
+
+<!-- Disqus Comments -->
+
+<!-- utterances Comments -->
+
+</body>
+</html>
