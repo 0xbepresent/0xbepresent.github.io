@@ -7,7 +7,7 @@ title: 0xbepresent
 subtitle: ''
 description: ''
 keywords:
-author: John Doe
+author: 0xbepresent
 language: en
 timezone: ''
 
@@ -98,14 +98,6 @@ ignore:
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
 theme: cactus
-
-theme_config:
-  colorscheme: classic
-
-social_links:
-  github: http://github.com/0xbepresent
-  twitter: /0xbepresent
-  mail: hi@misalabs.com
 
 # Deployment
 ## Docs: https://hexo.io/docs/one-command-deployment
