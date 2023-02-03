@@ -1,17 +1,15 @@
 ---
-title: CodeArena audit report participation - VTVL
+title: C4 audit report - VTVL contest
 date: 2023-02-02
 ---
 
-I participated in the [VTVL contest](https://github.com/code-423n4/2022-09-vtvl) from September 20, 2022 to September 23, 2022. I will explain my first medium report as a smart contracto auditor. You can read the full report [here](https://code4rena.com/reports/2022-09-vtvl).
+I participated in the [VTVL contest](https://github.com/code-423n4/2022-09-vtvl) from September 20, 2022 to September 23, 2022. I will explain my first medium report as a smart contract auditor. You can read the full audit report [here](https://code4rena.com/reports/2022-09-vtvl).
 
 The VTVL protocol allows users to generate and deploy token vesting smart contracts through their platform.
 
 Medium severities: 1
 
-<hr>
-
-## Max supply limit for the VariableSupplyERC20Token contract could be bypassed. Tokens for everyone!
+## Max supply limit for the VariableSupplyERC20Token contract could be bypassed.
 Severity: medium
 
 The [project has an ERC20](https://github.com/code-423n4/2022-09-vtvl/blob/f68b7f3e61/contracts/token/VariableSupplyERC20Token.sol#L40) contract that allows minting at will. You can see the next code:
