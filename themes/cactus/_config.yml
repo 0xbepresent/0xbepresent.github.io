@@ -25,8 +25,8 @@ nav:
 # (see https://fontawesome.com/icons?d=gallery&s=brands);
 # only 'mail' is an exception.
 social_links:
-  github: http://github.com/0xbepresent
-  twitter: /0xbepresent
+  github: https://github.com/0xbepresent
+  twitter: https://twitter.com/0xbepresent
   mail: mailto:hi@misalabs.com
 
 # Customize the overview with displaying a tagcloud on the index page.
