@@ -617,10 +617,10 @@ body {
   display: inline-block;
   float: left;
   margin-right: 20px;
-  width: 45px;
-  height: 40px;
+  width: 55px;
+  height: 50px;
   border-radius: 5px;
-  background-size: 45px 40px;
+  background-size: 55px 50px;
   background-repeat: no-repeat;
 }
 #header #nav {
@@ -667,7 +667,7 @@ body {
   #header #title {
     display: table;
     margin-right: 5rem;
-    min-height: 40px;
+    min-height: 50px;
   }
   #header #title h1 {
     display: table-cell;
@@ -691,7 +691,7 @@ body {
   }
   #header #nav li:not(:first-child) {
     padding-top: 1rem;
-    padding-left: 65px;
+    padding-left: 75px;
     font-size: 1rem;
   }
 }
