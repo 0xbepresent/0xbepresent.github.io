@@ -86,8 +86,8 @@ error_404:
 #   - grayout: whether to enable a hover effect on the logo
 logo:
   enabled: true
-  width: 45
-  height: 40
+  width: 55
+  height: 50
   url: /images/logo_bepresent2.png
   gravatar: false
   grayout: false
