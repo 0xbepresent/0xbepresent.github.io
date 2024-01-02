@@ -103,13 +103,13 @@ logo:
 #   - gravatar: whether to create a favicon from your Gravatar
 favicon:
   desktop:
-    url: /images/logo_bepresent.png
+    url: /images/logo_bepresent2.png
     gravatar: false
   android:
-    url: /images/logo_bepresent.png
+    url: /images/logo_bepresent2.png
     gravatar: false
   apple:
-    url: /images/logo_bepresent.png
+    url: /images/logo_bepresent2.png
     gravatar: false
 
 # The color scheme that should be used to highlight codeblocks.
