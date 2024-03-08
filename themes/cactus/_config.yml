@@ -15,7 +15,6 @@ direction: ltr
 # languages/*.yml
 nav:
   home: /
-  about: /about/
   articles: /archives/
   projects: http://github.com/0xbepresent
   Audits: https://github.com/0xbepresent/audits
